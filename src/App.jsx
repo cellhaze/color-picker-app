@@ -39,8 +39,17 @@ function PaletteGenerator() {
   const [hex, setHex] = useState("#000000");
 
   function handleGenerate() {
-    hsl = hslToHex(hex);
-    setColors([hex, "#ff2052", "#ff9966", "#fdee00", "#8db600"]);
+    // Splitting the hex color into HSL components to manipulate individually.
+    const [h, s, l] = hexToHsl(hex);
+
+    // Lightness Array
+    const l1 = hslToHex(h, s, 10);
+    const l2 = hslToHex(h, s, 30);
+    const l3 = hslToHex(h, s, 50);
+    const l4 = hslToHex(h, s, 70);
+    const l5 = hslToHex(h, s, 90);
+
+    setColors([l1, l2, l3, l4, l5]);
   }
 
   return (

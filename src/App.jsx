@@ -42,14 +42,13 @@ function PaletteGenerator() {
     // Splitting the hex color into HSL components to manipulate individually.
     const [h, s, l] = hexToHsl(hex);
 
-    // Lightness Array
-    const l1 = hslToHex(h, s, 10);
-    const l2 = hslToHex(h, s, 30);
-    const l3 = hslToHex(h, s, 50);
-    const l4 = hslToHex(h, s, 70);
-    const l5 = hslToHex(h, s, 90);
+    // Lightness Array: creating range of shades
+    const lightness = [10, 30, 50, 70, 90];
+    const newColors = lightness.map(function(lightness) {
+      return hslToHex(h, s, lightness);
+    });
 
-    setColors([l1, l2, l3, l4, l5]);
+    setColors(newColors);
   }
 
   return (

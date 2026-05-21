@@ -51,19 +51,36 @@ function PaletteGenerator() {
     setColors(newColors);
   }
 
+  const roles = ["Text", "Primary", "Accent", "Surface", "Background"];
+
   return (
     <div>
-      <div style={{ display: "flex", gap: 8 }}>
-        {colors.map(function(color) {
-          return <div key={color} style={{ width: 60, height: 60, borderRadius: 8, backgroundColor: color }} />;
-        })}
-      </div>
       <input 
         type="color"
         value={hex}
         onChange={function(e) { setHex(e.target.value); }}
       />
       <button onClick={handleGenerate}>Generate</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Color</th>
+            <th>Hex Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          {colors.map(function(color, index) {
+            return (
+              <tr key={color}>
+                <td>{roles[index]}</td>
+                <td style={{ backgroundColor: color, width: "100px", height: "50px" }}></td>
+                <td>{color}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   )
 }
